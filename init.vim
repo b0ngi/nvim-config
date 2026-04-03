@@ -15,7 +15,7 @@ filetype plugin indent on
 " unindent in insert mode on shift+tab
 inoremap <S-Tab> <C-d>
 " insert selected completion match with ctrl-enter
-inoremap <expr> <CR> pumvisible() ? '<c-y>' : '<c-i>'
+inoremap <expr> <CR> pumvisible() ? '<c-y>' : '<CR>'
 " insert top completion match with shift-enter
 inoremap <expr> <S-CR> pumvisible() ? '<down><c-y>' : '<S-CR>'
 " insert top completion match with ctrl-enter
