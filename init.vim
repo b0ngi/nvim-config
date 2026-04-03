@@ -49,7 +49,7 @@ inoremap (<cr> (<cr>)<Esc>ko<tab>
 
 
 " open/focus neotree on E
-noremap E <Cmd>Neotree<CR>
+noremap E <Cmd>Neotree toggle<CR>
 " map go-to-definition to <control 9>
 noremap <c-9> <c-]>
 
