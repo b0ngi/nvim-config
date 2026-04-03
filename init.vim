@@ -1,0 +1,94 @@
+set number
+set relativenumber
+set tabstop=4
+set shiftwidth=0 "use tabstop 
+set smarttab
+set expandtab
+"set autoindent
+set smartindent
+set mouse=a
+set nowrap
+
+syntax enable
+filetype plugin indent on
+
+" unindent in insert mode on shift+tab
+inoremap <S-Tab> <C-d>
+" insert selected completion match with ctrl-enter
+inoremap <expr> <CR> pumvisible() ? '<c-y>' : '<c-i>'
+" insert top completion match with shift-enter
+inoremap <expr> <S-CR> pumvisible() ? '<down><c-y>' : '<S-CR>'
+" insert top completion match with ctrl-enter
+inoremap <expr> <c-j> pumvisible() ? '<down>': '<c-j>'
+inoremap <expr> <c-k> pumvisible() ? '<up>' : '<c-k>'
+" refresh completion menu on backspace
+inoremap <expr> <BS> pumvisible() ? '<BS><c-x><c-o>' : '<BS>'
+" open lsp actions on ctl-.
+noremap <c-.> gra
+inoremap <c-.> <Esc>gra
+
+
+" insert matching braces single line
+inoremap { {}<Esc>i
+inoremap {<Space> {<Space><Space>}<Esc>hi
+inoremap {} {}
+inoremap ( ()<Esc>i
+inoremap (<Space> (<Space><Space>)<Esc>hi
+inoremap () ()
+inoremap [ []<Esc>i
+inoremap [<Space> [<Space><Space>]<Esc>hi
+inoremap [] []
+inoremap {<BS> {<BS> 
+inoremap (<BS> (<BS> 
+inoremap [<BS> [<BS> 
+inoremap "" ""<Esc>i
+inoremap '' ''<Esc>i
+" insert matching braces multiline
+inoremap {<cr> {<cr>}<Esc>ko
+inoremap (<cr> (<cr>)<Esc>ko<tab>
+
+
+" open/focus neotree on E
+noremap E <Cmd>Neotree<CR>
+" map go-to-definition to <control 9>
+noremap <c-9> <c-]>
+
+" highlight symbol with Flh
+noremap Flh <Cmd>lua vim.lsp.buf.document_highlight()<CR>
+
+
+" plugins
+call plug#begin()
+
+" tree sitter
+Plug 'nvim-treesitter/nvim-treesitter'
+
+" neo-tree
+Plug 'nvim-neo-tree/neo-tree.nvim'
+Plug 'nvim-lua/plenary.nvim'
+Plug 'MunifTanjim/nui.nvim'
+Plug 'nvim-tree/nvim-web-devicons'
+
+" nvim-surround
+Plug 'kylechui/nvim-surround'
+
+" default lsp configs
+Plug 'neovim/nvim-lspconfig'
+
+" diff/merge
+Plug 'sindrets/diffview.nvim'
+
+" colorscheme
+Plug 'https://github.com/scottmckendry/cyberdream.nvim'
+
+" telescope
+Plug 'nvim-telescope/telescope.nvim'
+
+call plug#end()
+
+" source lua init script
+lua require('init')
+
+
+
+colorscheme cyberdream
