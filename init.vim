@@ -84,6 +84,9 @@ Plug 'https://github.com/scottmckendry/cyberdream.nvim'
 " telescope
 Plug 'nvim-telescope/telescope.nvim'
 
+" session manager
+Plug 'rmagatti/auto-session'
+
 call plug#end()
 
 " source lua init script

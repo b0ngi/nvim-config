@@ -70,6 +70,8 @@ vim.keymap.set('n', 'Flr', builtin.lsp_references, { desc = 'Telescope lsp show 
 vim.keymap.set('n', 'Fli', builtin.lsp_implementations, { desc = 'Telescope lsp show implementations' })
 
 
+-- auto session
+require("auto-session").setup({})
 
 -- borders
 vim.o.winborder = 'rounded'
