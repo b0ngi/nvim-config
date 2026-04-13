@@ -8,6 +8,7 @@ set expandtab
 set smartindent
 set mouse=a
 set nowrap
+set autoread
 
 syntax enable
 filetype plugin indent on
@@ -87,11 +88,15 @@ Plug 'nvim-telescope/telescope.nvim'
 " session manager
 Plug 'rmagatti/auto-session'
 
+" debugger
+" Plug 'puremourning/vimspector'
+
 call plug#end()
 
 " source lua init script
 lua require('init')
 
-
+" let g:vimspector_enable_mappings = 'HUMAN'
+" packadd! vimspector
 
 colorscheme cyberdream

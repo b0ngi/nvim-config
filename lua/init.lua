@@ -1,3 +1,5 @@
+-- disable vim modelines
+vim.o.modeline = false
 -- treesitter
 require('nvim-treesitter').setup {
     indent = true,
