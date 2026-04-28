@@ -57,6 +57,14 @@ noremap <c-9> <c-]>
 " highlight symbol with Flh
 noremap Flh <Cmd>lua vim.lsp.buf.document_highlight()<CR>
 
+" debugger commands
+noremap Fu <Cmd>lua require("dapui").open()<CR><Cmd>DapNew<CR>
+noremap Fq <Cmd>lua require("dapui").close()<CR><Cmd>DapTerminate<CR>
+noremap <c-p> <Cmd>DapToggleBreakpoint<CR>
+noremap <c-n> <Cmd>DapStepOver<CR>
+noremap <c-s> <Cmd>DapStepInto<cr>
+noremap <c-o> <Cmd>DapStepOut<cr>
+noremap <c-c> <Cmd>DapContinue<cr>
 
 " plugins
 call plug#begin()
@@ -89,7 +97,11 @@ Plug 'nvim-telescope/telescope.nvim'
 Plug 'rmagatti/auto-session'
 
 " debugger
-" Plug 'puremourning/vimspector'
+Plug 'mfussenegger/nvim-dap'
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+Plug 'theHamsta/nvim-dap-virtual-text'
+Plug 'nvim-neotest/nvim-nio'
+Plug 'rcarriga/nvim-dap-ui'
 
 call plug#end()
 
