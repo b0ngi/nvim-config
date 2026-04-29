@@ -86,6 +86,12 @@ vim.keymap.set('n', '<c-j>', ':wincmd j<CR>')
 vim.keymap.set('n', '<c-h>', ':wincmd h<CR>')
 vim.keymap.set('n', '<c-l>', ':wincmd l<CR>')
 
+-- resize vim panes better
+vim.keymap.set('n', '<c-a-j>', ':horizontal resize +5<cr>')
+vim.keymap.set('n', '<c-a-k>', ':horizontal resize -5<cr>')
+vim.keymap.set('n', '<c-a-h>', ':vertical resize -5<cr>')
+vim.keymap.set('n', '<c-a-l>', ':vertical resize +5<cr>')
+
 local autocmd = vim.api.nvim_create_autocmd
 
 

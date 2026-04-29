@@ -61,10 +61,10 @@ noremap Flh <Cmd>lua vim.lsp.buf.document_highlight()<CR>
 noremap Fu <Cmd>lua require("dapui").open()<CR><Cmd>DapNew<CR>
 noremap Fq <Cmd>lua require("dapui").close()<CR><Cmd>DapTerminate<CR>
 noremap <c-p> <Cmd>DapToggleBreakpoint<CR>
-noremap <c-n> <Cmd>DapStepOver<CR>
-noremap <c-s> <Cmd>DapStepInto<cr>
-noremap <c-o> <Cmd>DapStepOut<cr>
-noremap <c-c> <Cmd>DapContinue<cr>
+noremap <c-s>n <Cmd>DapStepOver<CR>
+noremap <c-s>i <Cmd>DapStepInto<cr>
+noremap <c-s>o <Cmd>DapStepOut<cr>
+noremap <c-s>c <Cmd>DapContinue<cr>
 
 " plugins
 call plug#begin()
