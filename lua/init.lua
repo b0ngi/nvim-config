@@ -9,6 +9,8 @@ require('nvim-treesitter').setup {
 vim.cmd[[set completeopt+=menuone,noselect,popup]]
 
 
+require("colorful-winsep").setup()
+
 -- disable hover highlight
 vim.api.nvim_create_autocmd('ColorScheme', {
   callback = function()

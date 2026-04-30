@@ -89,6 +89,8 @@ Plug 'sindrets/diffview.nvim'
 
 " colorscheme
 Plug 'https://github.com/scottmckendry/cyberdream.nvim'
+" highlight active window
+Plug 'nvim-zh/colorful-winsep.nvim'
 
 " telescope
 Plug 'nvim-telescope/telescope.nvim'
