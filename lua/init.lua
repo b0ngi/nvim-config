@@ -50,6 +50,7 @@ for _, server_name in ipairs({
     'rust_analyzer',
     'clangd',
     'pyright',
+    'tinymist',
 }) do
   local existing_on_attach = (vim.lsp.config[server_name] or {}).on_attach
   vim.lsp.config(server_name, {
