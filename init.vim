@@ -47,6 +47,7 @@ inoremap '' ''<Esc>i
 " insert matching braces multiline
 inoremap {<cr> {<cr>}<Esc>ko
 inoremap (<cr> (<cr>)<Esc>ko<tab>
+inoremap [<cr> [<cr>]<Esc>ko<tab>
 
 
 " open/focus neotree on E
