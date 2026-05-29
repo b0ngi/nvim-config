@@ -229,3 +229,9 @@ require("nvim-dap-virtual-text").setup {
 }
 
 require("dapui").setup()
+
+
+
+if vim.g.neovide then
+    vim.o.guifont = "JetBrainsMono Nerd Font:h11"
+end
