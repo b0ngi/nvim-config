@@ -20,8 +20,11 @@ inoremap <expr> <CR> pumvisible() ? '<c-y>' : '<CR>'
 " insert top completion match with shift-enter
 inoremap <expr> <S-CR> pumvisible() ? '<down><c-y>' : '<S-CR>'
 " insert top completion match with ctrl-enter
-inoremap <expr> <c-j> pumvisible() ? '<down>': '<c-j>'
-inoremap <expr> <c-k> pumvisible() ? '<up>' : '<c-k>'
+inoremap <c-j> <down>
+inoremap <c-k> <up>
+inoremap <c-h> <left>
+inoremap <c-l> <right>
+"
 " refresh completion menu on backspace
 inoremap <expr> <BS> pumvisible() ? '<BS><c-x><c-o>' : '<BS>'
 " open lsp actions on ctl-.
