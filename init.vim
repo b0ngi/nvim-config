@@ -27,6 +27,7 @@ inoremap <c-l> <right>
 "
 " refresh completion menu on backspace
 inoremap <expr> <BS> pumvisible() ? '<BS><c-x><c-o>' : '<BS>'
+inoremap . .<c-x><c-o>
 " open lsp actions on ctl-.
 noremap <c-.> gra
 inoremap <c-.> <Esc>gra
