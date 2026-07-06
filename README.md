@@ -34,5 +34,5 @@ Some manual initial setup is needed for the config to work:
     from this config
 5. reopen nvim and type `:TSInstall` to install tree-sitter parsers
 6. install required language servers if you intend to use them.
-    the enabled list is in [](./lua/init.lua:49)
+    the enabled list is in `./lua/init.lua:49`
 6. tell me if setup steps are missing in this list
