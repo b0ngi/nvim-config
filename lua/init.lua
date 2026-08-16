@@ -76,7 +76,6 @@ local global_on_attach = function(client, bufnr)
     })
 end
 
-
 -- enable language servers
 for _, server_name in ipairs({
     'rust_analyzer',
