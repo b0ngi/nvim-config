@@ -1,9 +1,40 @@
 -- disable vim modelines
 vim.o.modeline = false
 -- treesitter
-require('nvim-treesitter').setup {
-    indent = true,
+require('nvim-treesitter').setup({
+    ensure_installed = {
+        'rust',
+        'wgsl',
+        'bash',
+        'c',
+        'lua',
+        'vim',
+        'markdown',
+        'python',
+    },
+    sync_install = true,
+    auto_install = true,
+    indent = {
+        enable = true,
+    },
+    highlight = {
+        enable = true,
+    },
+})
+require('nvim-treesitter').install {
+    'rust',
+    'wgsl',
+    'bash',
+    'c',
+    'lua',
+    'vim',
+    'markdown',
+    'python',
 }
+vim.api.nvim_create_autocmd('FileType', {
+  pattern = { 'wgsl', 'py', 'rs' },
+  callback = function() vim.treesitter.start() end,
+})
 
 -- set completion behaviour
 vim.cmd[[set completeopt+=menuone,noselect,popup]]
@@ -39,7 +70,8 @@ local global_on_attach = function(client, bufnr)
     vim.api.nvim_create_autocmd({ 'CursorMoved', 'CursorMovedI'}, {
         callback = function()
             vim.lsp.buf.clear_references()
-            vim.lsp.buf.document_highlight()
+            -- -- wgsl does not support this
+            -- vim.lsp.buf.document_highlight()
         end,
     })
 end
@@ -48,6 +80,7 @@ end
 -- enable language servers
 for _, server_name in ipairs({
     'rust_analyzer',
+    'wgsl_analyzer',
     'clangd',
     'pyright',
     'tinymist',
@@ -269,3 +302,5 @@ if vim.g.neovide then
     vim.g.neovide_scroll_animation_far_lines = 0
     vim.g.neovide_scroll_animation_length = 0.00
 end
+
+

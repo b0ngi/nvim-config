@@ -2,7 +2,7 @@ return {
     settings = {
         ['rust-analyzer'] = {
             diagnostics = {
-                enable = false;
+                enable = false,
             },
             imports = {
                 granularity = {
