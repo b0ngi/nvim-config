@@ -135,6 +135,10 @@ vim.keymap.set('n', 'Flt', builtin.lsp_type_definitions, { desc = 'Telescope lsp
 vim.keymap.set('n', 'Flr', builtin.lsp_references, { desc = 'Telescope lsp show references' })
 vim.keymap.set('n', 'Fli', builtin.lsp_implementations, { desc = 'Telescope lsp show implementations' })
 
+vim.keymap.set('n', 'tt', "<cmd>TestNearest<cr>", { desc = 'test nearest' })
+vim.keymap.set('n', 'tf', "<cmd>TestFile<cr>", { desc = 'test file' })
+vim.keymap.set('n', 'tl', "<cmd>TestLast<cr>", { desc = 'test last' })
+
 
 -- auto session
 require("auto-session").setup({})

@@ -110,7 +110,18 @@ Plug 'theHamsta/nvim-dap-virtual-text'
 Plug 'nvim-neotest/nvim-nio'
 Plug 'rcarriga/nvim-dap-ui'
 
+" Markdown
+Plug 'meanderingprogrammer/render-markdown.nvim'
+
+" run tests
+Plug 'vim-test/vim-test'
+
 call plug#end()
+
+" vim-test setup
+let test#strategy = "neovim"
+let test#rust#cargotest#test_options = '-- --nocapture --exact'
+let test#rust#cargonextest#options = '-- --nocapture --exact'
 
 " source lua init script
 lua require('init')
