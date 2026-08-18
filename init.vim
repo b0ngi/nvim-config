@@ -121,7 +121,7 @@ call plug#end()
 " vim-test setup
 let test#strategy = "neovim"
 let test#rust#cargotest#test_options = '-- --nocapture'
-let test#rust#cargonextest#options = '-- --nocapture'
+" let test#rust#cargonextest#options = '-- --nocapture'
 
 " source lua init script
 lua require('init')
