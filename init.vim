@@ -104,7 +104,7 @@ Plug 'nvim-telescope/telescope.nvim'
 Plug 'rmagatti/auto-session'
 
 " debugger
-Plug 'mfussenegger/nvim-dap'
+Plug 'https://codeberg.org/mfussenegger/nvim-dap'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'theHamsta/nvim-dap-virtual-text'
 Plug 'nvim-neotest/nvim-nio'
@@ -114,14 +114,13 @@ Plug 'rcarriga/nvim-dap-ui'
 Plug 'meanderingprogrammer/render-markdown.nvim'
 
 " run tests
-Plug 'vim-test/vim-test'
+Plug 'antoinemadec/FixCursorHold.nvim'
+Plug 'nvim-neotest/nvim-nio'
+Plug 'nvim-neotest/neotest'
+Plug 'mrcjkb/rustaceanvim'
 
 call plug#end()
 
-" vim-test setup
-let test#strategy = "neovim"
-let test#rust#cargotest#test_options = '-- --nocapture'
-" let test#rust#cargonextest#options = '-- --nocapture'
 
 " source lua init script
 lua require('init')

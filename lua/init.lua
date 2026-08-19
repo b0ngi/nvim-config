@@ -135,10 +135,6 @@ vim.keymap.set('n', 'Flt', builtin.lsp_type_definitions, { desc = 'Telescope lsp
 vim.keymap.set('n', 'Flr', builtin.lsp_references, { desc = 'Telescope lsp show references' })
 vim.keymap.set('n', 'Fli', builtin.lsp_implementations, { desc = 'Telescope lsp show implementations' })
 
-vim.keymap.set('n', 'tt', "<cmd>TestNearest<cr>", { desc = 'test nearest' })
-vim.keymap.set('n', 'tf', "<cmd>TestFile<cr>", { desc = 'test file' })
-vim.keymap.set('n', 'tl', "<cmd>TestLast<cr>", { desc = 'test last' })
-
 
 -- auto session
 require("auto-session").setup({})
@@ -305,5 +301,33 @@ if vim.g.neovide then
     vim.g.neovide_scroll_animation_far_lines = 0
     vim.g.neovide_scroll_animation_length = 0.00
 end
+
+
+require("neotest").setup({
+    adapters = {
+        require("rustaceanvim.neotest"),
+    },
+    diagnostic = {
+        enabled = false,
+    },
+    status = {
+        enabled = true,
+        virtual_text = true,
+    },
+    output = {
+        open_on_run = true,
+    },
+})
+
+local neotest = require("neotest")
+vim.keymap.set('n', 'tt', function() neotest.run.run() end, { desc = 'test nearest' })
+vim.keymap.set('n', 'tl', function() neotest.run.run_last() end, { desc = 'test last' })
+vim.keymap.set('n', 'tf', function() neotest.run.run(vim.fn.expand("%")) end, { desc = 'test file' })
+vim.keymap.set('n', 'td', function() neotest.run.run({strategy = "dap"}) end, { desc = 'debug test' })
+vim.keymap.set('n', 'ta', function() neotest.run.attach() end, { desc = 'attach test' })
+vim.keymap.set('n', 'to', function() neotest.output.open({enter = true, short = true}) end, { desc = 'open test output' })
+vim.keymap.set('n', 'tp', function() neotest.output_panel.open({enter = true}) end, { desc = 'open test output panel' })
+vim.keymap.set('n', 'tk', function() neotest.run.stop() end, { desc = 'stop nearest test' })
+vim.keymap.set('n', 'ts', function() neotest.summary.toggle() end, { desc = 'test summary toggle' })
 
 
