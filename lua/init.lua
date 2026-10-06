@@ -1,5 +1,7 @@
 -- disable vim modelines
 vim.o.modeline = false
+
+vim.g.copilot_enterprise_uri = 'https://liebherr.ghe.com'
 -- treesitter
 require('nvim-treesitter').setup({
     ensure_installed = {
@@ -305,7 +307,7 @@ end
 
 require("neotest").setup({
     adapters = {
-        require("rustaceanvim.neotest"),
+        -- require("rustaceanvim.neotest"),
     },
     diagnostic = {
         enabled = false,

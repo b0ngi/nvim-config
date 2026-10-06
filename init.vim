@@ -12,6 +12,7 @@ set autoread
 
 syntax enable
 filetype plugin indent on
+autocmd BufRead,BufNewFile *.tptpy set filetype=python
 
 " unindent in insert mode on shift+tab
 inoremap <S-Tab> <C-d>
@@ -117,7 +118,7 @@ Plug 'meanderingprogrammer/render-markdown.nvim'
 Plug 'antoinemadec/FixCursorHold.nvim'
 Plug 'nvim-neotest/nvim-nio'
 Plug 'nvim-neotest/neotest'
-Plug 'mrcjkb/rustaceanvim'
+" Plug 'mrcjkb/rustaceanvim'
 
 call plug#end()
 
