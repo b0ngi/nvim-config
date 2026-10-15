@@ -140,6 +140,7 @@ vim.keymap.set('n', 'Fli', builtin.lsp_implementations, { desc = 'Telescope lsp 
 
 -- auto session
 require("auto-session").setup({})
+vim.o.sessionoptions="blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"
 
 -- borders
 vim.o.winborder = 'rounded'
@@ -333,3 +334,24 @@ vim.keymap.set('n', 'tk', function() neotest.run.stop() end, { desc = 'stop near
 vim.keymap.set('n', 'ts', function() neotest.summary.toggle() end, { desc = 'test summary toggle' })
 
 
+-- disable pyright for .tptpy files
+autocmd({"BufRead", "BufNewFile"}, {
+    pattern = {"*.tptpy"},
+    callback = function(ev)
+        vim.bo.filetype = "python"
+        vim.bo.shiftwidth = 2
+        vim.api.nvim_create_autocmd('LspAttach', {
+            callback = function(ev)
+                local client = vim.lsp.get_client_by_id(ev.data.client_id)
+                if client.name == "pyright" then
+                    client:stop()
+                end
+            end
+        })
+    end,
+})
+
+-- github integration
+require("octo").setup({
+    use_local_fs = true,
+})
