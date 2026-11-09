@@ -44,6 +44,13 @@ vim.cmd[[set completeopt+=menuone,noselect,popup]]
 
 require("colorful-winsep").setup()
 
+require('render-markdown').setup({
+  pipe_table = {
+    style = 'full',
+    border_enabled = true,
+  },
+})
+
 -- disable hover highlight
 vim.api.nvim_create_autocmd('ColorScheme', {
   callback = function()
@@ -336,7 +343,7 @@ vim.keymap.set('n', 'ts', function() neotest.summary.toggle() end, { desc = 'tes
 
 -- disable pyright for .tptpy files
 autocmd({"BufRead", "BufNewFile"}, {
-    pattern = {"*.tptpy"},
+    pattern = {"*.tptpy", "*.tptapi"},
     callback = function(ev)
         vim.bo.filetype = "python"
         vim.bo.shiftwidth = 2
@@ -355,3 +362,6 @@ autocmd({"BufRead", "BufNewFile"}, {
 require("octo").setup({
     use_local_fs = true,
 })
+
+-- tablines
+require("ibl").setup()
