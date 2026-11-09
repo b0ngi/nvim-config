@@ -126,6 +126,18 @@ Plug 'pwntester/octo.nvim', { 'commit': '34e67cc2d247e9b9271e2b54baeb6d4f6d1035b
 " rainbow tabs
 Plug 'https://github.com/lukas-reineke/indent-blankline.nvim'
 
+" Maxxis Plugins
+Plug 'kevinhwang91/promise-async' " required by nvim-ufo
+Plug 'kevinhwang91/nvim-ufo' " Fancy folding extention
+Plug 'chrisgrieser/nvim-spider' " Subword skip (camelCase, snake_case, ...)
+Plug 'L3MON4D3/LuaSnip', {'tag': 'v2.*', 'do': 'make install_jsregexp'} " Replace <CurrentMajor> by the latest released major (first number of latest release)
+Plug 'monaqa/dial.nvim' " Fancy C-x / C-a
+Plug 'ibhagwan/fzf-lua' " Required by trouble
+Plug 'folke/trouble.nvim' " Required by todo-comment
+Plug 'folke/todo-comments.nvim' " Hilight todos
+Plug 'nvimtools/none-ls-extras.nvim' " Required by none-ls
+Plug 'nvimtools/none-ls.nvim' " Required by lazydocs
+Plug 'jla2000/lazydocs.nvim' " Doc helper
 call plug#end()
 
 
@@ -137,6 +149,7 @@ lua require('init')
 
 colorscheme cyberdream
 
+" load user config
 let $userscript = stdpath('data') . '/user.vim'
 if filereadable($userscript)
     source $userscript

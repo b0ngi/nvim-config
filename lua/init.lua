@@ -365,3 +365,86 @@ require("octo").setup({
 
 -- tablines
 require("ibl").setup()
+
+-- ufo fency folding
+vim.o.foldcolumn = '1' -- '0' is not bad
+vim.o.foldlevel = 99 -- Using ufo provider need a large value, feel free to decrease the value
+vim.o.foldlevelstart = 99
+vim.o.foldenable = true
+
+-- Using ufo provider need remap `zR` and `zM`. If Neovim is 0.6.1, remap yourself
+vim.keymap.set('n', '<CR>', require('ufo').closeAllFolds)
+vim.keymap.set('n', '<S-CR>', require('ufo').openAllFolds)
+
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities.textDocument.foldingRange = {
+    dynamicRegistration = false,
+    lineFoldingOnly = true
+}
+local language_servers = vim.lsp.get_clients() -- or list servers manually like {'gopls', 'clangd'}
+for _, ls in ipairs(language_servers) do
+    require('lspconfig')[ls].setup({
+        capabilities = capabilities
+        -- you can add other fields for setting up lsp server in this table
+    })
+end
+require('ufo').setup()
+
+-- Spider
+require("spider").setup {
+	skipInsignificantPunctuation = true,
+	subwordMovement = true,
+	consistentOperatorPending = false, -- see the README for details
+	customPatterns = {}, -- see the README for details
+}
+vim.keymap.set({ "n", "o", "x" }, "w", "<cmd>lua require('spider').motion('w')<CR>")
+vim.keymap.set({ "n", "o", "x" }, "e", "<cmd>lua require('spider').motion('e')<CR>")
+vim.keymap.set({ "n", "o", "x" }, "b", "<cmd>lua require('spider').motion('b')<CR>")
+vim.keymap.set({ "n", "o", "x" }, "ge", "<cmd>lua require('spider').motion('ge')<CR>")
+
+local augend = require("dial.augend")
+require("dial.config").augends:register_group{
+  -- default augends used when no group name is specified
+  default = {
+    augend.integer.alias.decimal,   -- nonnegative decimal number (0, 1, 2, 3, ...)
+    augend.integer.alias.hex,       -- nonnegative hex number  (0x01, 0x1a1f, etc.)
+    augend.date.alias["%Y/%m/%d"],  -- date (2022/02/19, etc.)
+  },
+
+  -- augends used when group with name `mygroup` is specified
+  mygroup = {
+    augend.integer.alias.decimal,
+    augend.constant.alias.bool,    -- boolean value (true <-> false)
+    augend.date.alias["%m/%d/%Y"], -- date (02/19/2022, etc.)
+  }
+}
+
+-- LuaSnip
+local ls = require("luasnip")
+
+vim.keymap.set({"i"}, "<F6>", function() ls.expand() end, {silent = true})
+vim.keymap.set({"i", "s"}, "<C-L>", function() ls.jump( 1) end, {silent = true})
+vim.keymap.set({"i", "s"}, "<C-J>", function() ls.jump(-1) end, {silent = true})
+
+vim.keymap.set({"i", "s"}, "<C-E>", function()
+	if ls.choice_active() then
+		ls.change_choice(1)
+	end
+end, {silent = true})
+
+-- Todo-comment:
+require('todo-comments.search')
+
+-- null-ls
+local null_ls = require("null-ls")
+
+null_ls.setup({
+    sources = {
+        null_ls.builtins.formatting.stylua,
+        null_ls.builtins.completion.spell,
+        require("none-ls.diagnostics.eslint"), -- requires none-ls-extras.nvim
+    },
+})
+
+-- lazydocs
+require("lazydocs").setup()
