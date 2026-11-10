@@ -36,3 +36,46 @@ Some manual initial setup is needed for the config to work:
 6. install required language servers if you intend to use them.
     the enabled list is in `./lua/init.lua:49`
 6. tell me if setup steps are missing in this list
+
+## Cheat Sheet
+
+### [Tree-sitter](https://github.com/nvim-treesitter/nvim-treesitter)
+
+`Fd`    Show diagnostics
+`Fh`    Help tags
+`Ff`    Find file
+`Fb`    Find buffer
+`Fg`    Live grep
+
+### [DAP](https://codeberg.org/mfussenegger/nvim-dap) -- Debugger UI
+
+`Fq`    Terminate DAP UI
+`Fu`    Open DAP UI
+`<C-P>` Tobble breakpoints
+`<C-S>c` Continue
+`<C-S>o` Step out
+`<C-S>i` Step into
+`<C-S>n` Step over
+
+### [UFO](https://github.com/kevinhwang91/nvim-ufo) -- block folding
+
+`F4`    Collapse all folds
+`<CR>`  Open all folds
+
+### [Spider](https://github.com/chrisgrieser/nvim-spider) -- jump sub-words
+
+`w`     Jump to begin of next subword
+`b`     Jump to begin of previous subword
+`e`     Jump to end of next subword
+`ge`     Jump to end of previous subword
+
+### [Comment](https://github.com/numToStr/Comment.nvim) -- comment/uncomment code
+
+`gc`    Tobble single line comment
+`gb`    Toggle block comment
+
+### Neogen -- anotation generator
+
+`Fc`    Comment signature
+`<C-l>` Jump to next comment entry
+`<C-h>` Jump to previous comment entry

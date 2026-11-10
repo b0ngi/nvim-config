@@ -9,10 +9,12 @@ require('nvim-treesitter').setup({
         'wgsl',
         'bash',
         'c',
+        'cpp',
         'lua',
         'vim',
         'markdown',
         'python',
+        'doxygen',
     },
     sync_install = true,
     auto_install = true,
@@ -28,13 +30,15 @@ require('nvim-treesitter').install {
     'wgsl',
     'bash',
     'c',
+    'cpp',
     'lua',
     'vim',
     'markdown',
     'python',
+    'doxygen',
 }
 vim.api.nvim_create_autocmd('FileType', {
-  pattern = { 'wgsl', 'py', 'rs' },
+  pattern = { 'wgsl', 'py', 'rs', 'c', 'cc', 'cpp', 'h', 'hpp' },
   callback = function() vim.treesitter.start() end,
 })
 
@@ -373,8 +377,8 @@ vim.o.foldlevelstart = 99
 vim.o.foldenable = true
 
 -- Using ufo provider need remap `zR` and `zM`. If Neovim is 0.6.1, remap yourself
-vim.keymap.set('n', '<CR>', require('ufo').closeAllFolds)
-vim.keymap.set('n', '<S-CR>', require('ufo').openAllFolds)
+vim.keymap.set('n', '<F4>', require('ufo').closeAllFolds)
+vim.keymap.set('n', '<CR>', require('ufo').openAllFolds)
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities.textDocument.foldingRange = {
@@ -388,7 +392,7 @@ for _, ls in ipairs(language_servers) do
         -- you can add other fields for setting up lsp server in this table
     })
 end
-require('ufo').setup()
+--require('ufo').setup()
 
 -- Spider
 require("spider").setup {
@@ -423,7 +427,7 @@ require("dial.config").augends:register_group{
 local ls = require("luasnip")
 
 vim.keymap.set({"i"}, "<F6>", function() ls.expand() end, {silent = true})
-vim.keymap.set({"i", "s"}, "<C-L>", function() ls.jump( 1) end, {silent = true})
+vim.keymap.set({"i", "s"}, "<C-K>", function() ls.jump( 1) end, {silent = true})
 vim.keymap.set({"i", "s"}, "<C-J>", function() ls.jump(-1) end, {silent = true})
 
 vim.keymap.set({"i", "s"}, "<C-E>", function()
@@ -432,19 +436,21 @@ vim.keymap.set({"i", "s"}, "<C-E>", function()
 	end
 end, {silent = true})
 
--- Todo-comment:
-require('todo-comments.search')
+-- neogen
+require('neogen').setup {
+    snippet_engine = "luasnip",
+    enabled = true,             --if you want to disable Neogen
+    input_after_comment = true, -- (default: true) automatic jump (with insert mode) on inserted annotation
+    jump_map = "<C-e>",       -- (DROPPED SUPPORT, see [here](#cycle-between-annotations) !) The keymap in order to jump in the annotation fields (in insert mode)
+    languages = {
+        ['cpp.doxygen'] = require('neogen.configurations.cpp')
+    }
+}
 
--- null-ls
-local null_ls = require("null-ls")
+local opts = { noremap = true, silent = true }
+vim.api.nvim_set_keymap("n", "Fc", ":lua require('neogen').generate()<CR>", opts)
+vim.api.nvim_set_keymap("i", "<C-l>", ":lua require('neogen').jump_next<CR>", opts)
+vim.api.nvim_set_keymap("i", "<C-h>", ":lua require('neogen').jump_prev<CR>", opts)
 
-null_ls.setup({
-    sources = {
-        null_ls.builtins.formatting.stylua,
-        null_ls.builtins.completion.spell,
-        require("none-ls.diagnostics.eslint"), -- requires none-ls-extras.nvim
-    },
-})
-
--- lazydocs
-require("lazydocs").setup()
+-- Comment
+require('Comment').setup()

@@ -12,6 +12,19 @@ set autoread
 
 syntax enable
 filetype plugin indent on
+"
+" Toggles between showing and hiding the list characters:
+function ToggleList()
+	if &list == 1
+		set nolist
+		echo "Listchars: OFF"
+	else
+		set list
+		echo "Listchars: ON"
+	endif
+endfunc
+nmap <f8> :call ToggleList()<cr>
+nnoremap <silent> <space> :exe 'silent! normal! za'<cr>
 
 " unindent in insert mode on shift+tab
 inoremap <S-Tab> <C-d>
@@ -134,18 +147,13 @@ Plug 'L3MON4D3/LuaSnip', {'tag': 'v2.*', 'do': 'make install_jsregexp'} " Replac
 Plug 'monaqa/dial.nvim' " Fancy C-x / C-a
 Plug 'ibhagwan/fzf-lua' " Required by trouble
 Plug 'folke/trouble.nvim' " Required by todo-comment
-Plug 'folke/todo-comments.nvim' " Hilight todos
-Plug 'nvimtools/none-ls-extras.nvim' " Required by none-ls
-Plug 'nvimtools/none-ls.nvim' " Required by lazydocs
-Plug 'jla2000/lazydocs.nvim' " Doc helper
+Plug 'danymat/neogen' " Annotaion kit
+Plug 'numToStr/Comment.nvim' " Comment helper
 call plug#end()
 
 
 " source lua init script
 lua require('init')
-
-" let g:vimspector_enable_mappings = 'HUMAN'
-" packadd! vimspector
 
 colorscheme cyberdream
 
@@ -154,3 +162,4 @@ let $userscript = stdpath('data') . '/user.vim'
 if filereadable($userscript)
     source $userscript
 endif
+
